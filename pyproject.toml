@@ -5,9 +5,12 @@ description = ""
 authors = ["Kajornthep Piyanun <kajornthep.p@linecorp.com>"]
 readme = "README.md"
 
+
 [tool.poetry.dependencies]
 python = "^3.9"
 
+[tool.poetry.scripts]
+klickbrick = "klickbrick.cli:run"
 
 [build-system]
 requires = ["poetry-core"]
