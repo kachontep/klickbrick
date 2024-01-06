@@ -1,0 +1,38 @@
+name: Klickbrick CI
+
+on:
+  push:
+    tags:
+      - '^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(-[\da-zA-Z-]+(\.[\da-zA-Z-]+)*)?(\+[\da-zA-Z-]+(\.[\da-zA-Z-]+)*)?$'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install Poetry
+      run: |
+        curl -sSL https://install.python-poetry.org | python3 -
+
+    - name: Install dependencies
+      run: poetry install
+
+    - name: Run tests
+      run: poetry run python -m unittest discover
+
+    - name: Configure Test-PyPI credentials
+      env:
+        TEST_PYPI_TOKEN: ${{ secrets.TESTPYPITOKEN}}
+      run: |
+        poetry config --local http-basic.test-pypi __token__ '{{TEST_PYPI_TOKEN}}'
+
+    - name: Publish Test-PyPI
+      run: poetry publish --build --repository test-pypi
