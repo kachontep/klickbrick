@@ -1,9 +1,12 @@
 [tool.poetry]
-name = "klickbrick"
+name = "kachontep-klickbrick"
 version = "0.1.0"
 description = ""
 authors = ["Kajornthep Piyanun <kajornthep.p@linecorp.com>"]
 readme = "README.md"
+packages = [
+    { include = "klickbrick" }
+]
 
 
 [tool.poetry.dependencies]
