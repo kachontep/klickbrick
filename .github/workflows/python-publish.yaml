@@ -32,7 +32,7 @@ jobs:
       env:
         TEST_PYPI_TOKEN: ${{ secrets.TESTPYPITOKEN }}
       run: |
-        poetry config --local http-basic.test-pypi __token__ '{{TEST_PYPI_TOKEN}}'
+        poetry config --local http-basic.test-pypi __token__ '${{ env.TEST_PYPI_TOKEN }}'
 
     - name: Publish Test-PyPI
       run: poetry publish --build --repository test-pypi
