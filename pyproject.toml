@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "kachontep-klickbrick"
-version = "0.1.0"
+version = "0.1.1"
 description = ""
 authors = ["Kajornthep Piyanun <kajornthep.p@linecorp.com>"]
 readme = "README.md"
